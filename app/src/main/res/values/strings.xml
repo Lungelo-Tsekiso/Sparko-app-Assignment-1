@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Sparko</string>
+    <string-array name="ChooseCommunity">
+        <item>Family</item>
+        <item>Friends</item>
+        <item>Work</item>
+        <item>School</item>
+        <item>Mental Health</item>
+        <item>LGBTQI+</item>
+        <item>Religious/Spiritual</item>
+    </string-array>
+
+</resources>
