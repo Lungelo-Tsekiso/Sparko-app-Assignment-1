@@ -12,6 +12,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Sparko">
         <activity
+            android:name=".WorkAndSchoolActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SpiritualActivity"
+            android:exported="false" />
+        <activity
+            android:name=".LGBTQactivity"
+            android:exported="false" />
+        <activity
+            android:name=".MentalHealthActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FriendsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FamilyActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
