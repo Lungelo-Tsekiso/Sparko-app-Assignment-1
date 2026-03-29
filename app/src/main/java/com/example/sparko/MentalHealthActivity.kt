@@ -1,6 +1,7 @@
 package com.example.sparko
 
 import android.os.Bundle
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -9,16 +10,16 @@ import androidx.core.view.WindowInsetsCompat
 class MentalHealthActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_mental_health)
+        setContentView(R.layout.activity_spiritual)
 
-        // 1. Catch the mental health spark
-        val mentalHealthMessage = intent.getStringExtra("CORA_SPARK")
+        // 1. Grab the spark message from the intent
+        val spiritualMessage = intent.getStringExtra("CORA_SPARK")
 
-        // 2. Find the TextView and display it
+        // 2. Display the text in your TextView
         val displayTextView = findViewById<TextView>(R.id.sparkDisplayTextView)
-        displayTextView.text = mentalHealthMessage
+        displayTextView.text = spiritualMessage
 
-        // 3. Back button so Cora can return to the main menu
+        // 3. The Back Button logic
         findViewById<Button>(R.id.backButton).setOnClickListener {
             finish()
         }

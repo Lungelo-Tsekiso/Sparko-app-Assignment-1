@@ -110,8 +110,6 @@ class MainActivity : AppCompatActivity() {
                             "Work/School Spark: Send a quick message..."
                         }
 
-                        intent.putExtra("CORA_SPARK", spark)
-                        startActivity(intent)
                     }
 
                     "Friends" -> {
@@ -134,25 +132,6 @@ class MainActivity : AppCompatActivity() {
                             "Friends Spark: Reach out to a friend just to let them know you're thinking of them!"
                         }
 
-                        "Mental Health" -> {
-                        }
-                        val intent = Intent(this@MainActivity, MentalHealthActivity::class.java)
-
-                        val spark = if (timeOfDay.contains("morning")) {
-                            "Morning Spark: Take 5 deep breaths and set one positive intention for your day."
-                        } else if (timeOfDay.contains("mid-morning")) {
-                            "Mid-morning Spark: Stretch your arms and neck. Remind yourself that you are doing your best."
-                        } else if (timeOfDay.contains("snack")) {
-                            "Snack Time Spark: Drink a glass of water mindfully. Notice the sensation and stay present."
-                        } else if (timeOfDay.contains("afternoon")) {
-                            "Afternoon Spark: Write down one thing you have accomplished today, no matter how small."
-                        } else if (timeOfDay.contains("dinner")) {
-                            "Dinner Spark: Put your phone away while you eat and focus on the flavors of your food."
-                        } else if (timeOfDay.contains("night") || timeOfDay.contains("after dinner")) {
-                            "Night Spark: List three things you are grateful for before you close your eyes to sleep."
-                        } else {
-                            "Mental Health Spark: Take a moment to simply be. You are enough exactly as you are."
-                        }
                     }
 
                     "LGBTQ+" -> {
@@ -161,156 +140,58 @@ class MainActivity : AppCompatActivity() {
                         val spark = if (timeOfDay.contains("morning")) {
                             "Morning Spark: Start your day with a positive affirmation: 'I am proud of who I am.'"
                         } else if (timeOfDay.contains("mid-morning")) {
-                    "Mid-morning Spark: Reach out to a supportive friend or ally for a quick chat."
-                        } else if ( timeOfDay.contains("snack") ->
-                                "Snack Time Spark: Look up an inspiring quote from an LGBTQ+ icon you admire."
-                            timeOfDay.contains("afternoon") ->
-                                "Afternoon Spark: Share a piece of queer media (song, book, or artist) with someone today."
-                            timeOfDay.contains("dinner") ->
-                                "Dinner Spark: Check in on a community group …
-                            [04:45, 3/29/2026] .: // Inside LGBTQactivity.kt
-                                override fun onCreate(savedInstanceState: Bundle?) {
-                                super.onCreate(savedInstanceState)
-                                setContentView(R.layout.activity_lgbtqactivity) // Ensure this matches your XML file name!
+                            "Mid-morning Spark: Reach out to a supportive friend or ally for a quick chat."
+                        } else if (timeOfDay.contains("snack")) {
+                            "Snack Time Spark: Look up an inspiring quote from an LGBTQ+ icon you admire."
+                        } else if (timeOfDay.contains("afternoon")) {
+                            "Afternoon Spark: Share a piece of queer media (song, book, or artist) with someone today"
+                        } else if (timeOfDay.contains("dinner")) {
+                            "Dinner Spark: Check in on a community group or forum to see how others are doing."
+                        } else if (timeOfDay.contains("night") || timeOfDay.contains("after dinner")) {
+                            "Night Spark: Reflect on a moment today where you felt truly seen and accepted."
+                        } else {
+                            "Community Spark: Celebrate your unique journey and the community that walks with you."
+                        }
 
-                                // 1. Grab the spark message
-                                val lgbtqMessage = intent.getStringExtra("CORA_SPARK")
-
-                                // 2. Display the text
-                                val displayTextView = findViewById<TextView>(R.id.sparkDisplayTextView)
-                                displayTextView.text = lgbtqMessage
-
-                                // 3. The Back Button
-                                findViewById<Button>(R.id.backButton).setOnClickListener {
-                                    finish()
-                                }
-                            }
-                                [04:45, 3/29/2026] .: "Religious/Spiritual" -> {
-                                val intent = Intent(this@MainActivity, SpiritualActivity::class.java)
-
-                                val spark = when {
-                                    timeOfDay.contains("morning") ->
-                                        "Morning Spark: Spend 5 minutes in silent prayer or meditation to center your soul."
-                                    timeOfDay.contains("mid-morning") ->
-                                        "Mid-morning Spark: Read a short passage from a sacred text or an inspiring spiritual book."
-                                    timeOfDay.contains("snack") ->
-                                        "Snack Time Spark: Offer a brief prayer of gratitude for the nourishment and energy you have."
-                                    timeOfDay.contains("afternoon") ->
-                                        "Afternoon Spark: Reach out to someone in your faith community just to say 'I'm thinking of you'."
-                                    timeOfDay.contains("dinner") ->
-                                        …
-                                        [04:45, 3/29/2026] .: // Inside SpiritualActivity.kt
-                                        override fun onCreate(savedInstanceState: Bundle?) {
-                                        super.onCreate(savedInstanceState)
-                                        setContentView(R.layout.activity_spiritual)
-
-                                        // 1. Grab the spark message from the intent
-                                        val spiritualMessage = intent.getStringExtra("CORA_SPARK")
-
-                                        // 2. Display the text in your TextView
-                                        val displayTextView = findViewById<TextView>(R.id.sparkDisplayTextView)
-                                        displayTextView.text = spiritualMessage
-
-                                        // 3. The Back Button logic
-                                        findViewById<Button>(R.id.backButton).setOnClickListener {
-                                            finish()
-                                        }
-                                    }
                     }
-                }
-                [04:45, "Mental Health" -> {
+                    "Religious/Spiritual" -> {
+                        val intent = Intent(this@MainActivity, SpiritualActivity::class.java)
+
+                        val spark = if (timeOfDay.contains("morning")) {
+                            "Morning Spark: Spend 5 minutes in silent prayer or meditation to center your soul"
+                        } else if (timeOfDay.contains("mid-morning")) {
+                            "Mid-morning Spark: Read a short passage from a sacred text or an inspiring spiritual book."
+                        } else if (timeOfDay.contains("snack")) {
+                            "Snack Time Spark: Offer a brief prayer of gratitude for the nourishment and energy you have."
+                        } else if (timeOfDay.contains("afternoon")) {
+                            "Afternoon Spark: Reach out to someone in your faith community just to say 'I'm thinking of you'."
+                        } else if (timeOfDay.contains("dinner")) {
+                            "Dinner Spark: Reflect on one blessing from today while you share a meal."
+                        } else if (timeOfDay.contains("night") || timeOfDay.contains("after dinner")) {
+                            "Night Spark: End your day with a prayer for peace and protection over your loved ones."
+                        } else {
+                            "Spiritual Spark: Take a deep breath and reconnect with the quiet peace within you."
+                        }
+
+                    }
+                    "Mental Health" -> {
                     val intent = Intent(this@MainActivity, MentalHealthActivity::class.java)
 
-                    val spark = when {
-                        timeOfDay.contains("morning") ->
-                            "Morning Spark: Take 5 deep breaths and set one positive intention for your day."
-                        timeOfDay.contains("mid-morning") ->
-                            "Mid-morning Spark: Stretch your arms and neck. Remind yourself that you are doing your best."
-                        timeOfDay.contains("snack") ->
-                            "Snack Time Spark: Drink a glass of water mindfully. Notice the sensation and stay present."
-                        timeOfDay.contains("afternoon") ->
-                            "Afternoon Spark: Write down one thing you have accomplished today, no matter how small."
-                        timeOfDay.contains("dinner") ->
-                            "Dinner S…
-                        [04:45, 3/29/2026] .: // Inside MentalHealthActivity.kt
-                            override fun onCreate(savedInstanceState: Bundle?) {
-                            super.onCreate(savedInstanceState)
-                            setContentView(R.layout.activity_mental_health)
-
-                            // 1. Catch the mental health spark
-                            val mentalHealthMessage = intent.getStringExtra("CORA_SPARK")
-
-                            // 2. Find the TextView and display it
-                            val displayTextView = findViewById<TextView>(R.id.sparkDisplayTextView)
-                            displayTextView.text = mentalHealthMessage
-
-                            // 3. Back button so Cora can return to the main menu
-                            findViewById<Button>(R.id.backButton).setOnClickListener {
-                                finish()
-                            }
-                        }
-                            [04:45, 3/29/2026] .: "LGBTQ+" -> {
-                            val intent = Intent(this@MainActivity, LGBTQactivity::class.java)
-
-                            val spark = when {
-                                timeOfDay.contains("morning") ->
-                                    "Morning Spark: Start your day with a positive affirmation: 'I am proud of who I am.'"
-                                timeOfDay.contains("mid-morning") ->
-                                    "Mid-morning Spark: Reach out to a supportive friend or ally for a quick chat."
-                                timeOfDay.contains("snack") ->
-                                    "Snack Time Spark: Look up an inspiring quote from an LGBTQ+ icon you admire."
-                                timeOfDay.contains("afternoon") ->
-                                    "Afternoon Spark: Share a piece of queer media (song, book, or artist) with someone today."
-                                timeOfDay.contains("dinner") ->
-                                    "Dinner Spark: Check in on a community group …
-                                [04:45, 3/29/2026] .: // Inside LGBTQactivity.kt
-                                    override fun onCreate(savedInstanceState: Bundle?) {
-                                    super.onCreate(savedInstanceState)
-                                    setContentView(R.layout.activity_lgbtqactivity) // Ensure this matches your XML file name!
-
-                                    // 1. Grab the spark message
-                                    val lgbtqMessage = intent.getStringExtra("CORA_SPARK")
-
-                                    // 2. Display the text
-                                    val displayTextView = findViewById<TextView>(R.id.sparkDisplayTextView)
-                                    displayTextView.text = lgbtqMessage
-
-                                    // 3. The Back Button
-                                    findViewById<Button>(R.id.backButton).setOnClickListener {
-                                        finish()
-                                    }
-                                }
-                                    [04:45, 3/29/2026] .: "Religious/Spiritual" -> {
-                                    val intent = Intent(this@MainActivity, SpiritualActivity::class.java)
-
-                                    val spark = when {
-                                        timeOfDay.contains("morning") ->
-                                            "Morning Spark: Spend 5 minutes in silent prayer or meditation to center your soul."
-                                        timeOfDay.contains("mid-morning") ->
-                                            "Mid-morning Spark: Read a short passage from a sacred text or an inspiring spiritual book."
-                                        timeOfDay.contains("snack") ->
-                                            "Snack Time Spark: Offer a brief prayer of gratitude for the nourishment and energy you have."
-                                        timeOfDay.contains("afternoon") ->
-                                            "Afternoon Spark: Reach out to someone in your faith community just to say 'I'm thinking of you'."
-                                        timeOfDay.contains("dinner") ->
-                                            …
-                                            [04:45, 3/29/2026] .: // Inside SpiritualActivity.kt
-                                            override fun onCreate(savedInstanceState: Bundle?) {
-                                            super.onCreate(savedInstanceState)
-                                            setContentView(R.layout.activity_spiritual)
-
-                                            // 1. Grab the spark message from the intent
-                                            val spiritualMessage = intent.getStringExtra("CORA_SPARK")
-
-                                            // 2. Display the text in your TextView
-                                            val displayTextView = findViewById<TextView>(R.id.sparkDisplayTextView)
-                                            displayTextView.text = spiritualMessage
-
-                                            // 3. The Back Button logic
-                                            findViewById<Button>(R.id.backButton).setOnClickListener {
-                                                finish()
-                                            }
-                                        }
+                    val spark = if (timeOfDay.contains("morning")) {
+                        "Morning Spark: Take 5 deep breaths and set one positive intention for your day."
+                         } else if (timeOfDay.contains("mid-morning")) {
+                        "Mid-morning Spark: Stretch your arms and neck. Remind yourself that you are doing your best."
+                         } else if (timeOfDay.contains("snack")) {
+                        "Snack Time Spark: Drink a glass of water mindfully. Notice the sensation and stay present."
+                         } else if (timeOfDay.contains("afternoon")) {
+                        "Afternoon Spark: Write down one thing you have accomplished today, no matter how small."
+                         } else if (timeOfDay.contains("dinner")) {
+                        "Dinner Spark: Put your phone away while you eat and focus on the flavors of your food."
+                         } else if (timeOfDay.contains("night") || timeOfDay.contains("after dinner")) {
+                        "Night Spark: List three things you are grateful for before you close your eyes to sleep."
+                         } else {
+                             "Mental Health Spark: Take a moment to simply be. You are enough exactly as you are."
+                         }
                 }
             }
         }
