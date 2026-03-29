@@ -17,14 +17,12 @@ class MentalHealthActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mental_health)
 
-        // 1. Grab the spark message from the intent
+
         val spiritualMessage = intent.getStringExtra("CORA_SPARK")
 
-        // 2. Display the text in your TextView
         val displayTextView = findViewById<TextView>(sparkDisplayTextView)
         displayTextView.text = spiritualMessage
 
-        // 3. The Back Button logic
         findViewById<Button>(backButton).setOnClickListener {
             finish()
         }
