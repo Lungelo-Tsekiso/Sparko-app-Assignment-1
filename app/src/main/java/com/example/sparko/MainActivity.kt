@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewParent
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.SpinnerAdapter
@@ -22,6 +23,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
+        val exitBtn: Button = findViewById(R.id.exitButton)
+        exitBtn.setOnClickListener {
+            finishAffinity()
+        }
+
         val mySpinner: Spinner = findViewById(R.id.spinner)
         val options = arrayOf(
             "Family",
@@ -35,25 +42,8 @@ class MainActivity : AppCompatActivity() {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         mySpinner.adapter = adapter
 
+
         mySpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                val selectedCategory = options[position]
-
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-            }
-        }
-
-
-        // This connects the listener to your spinner
-        mySpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-
             override fun onItemSelected(
                 parent: AdapterView<*>,
                 view: View?,
@@ -65,12 +55,14 @@ class MainActivity : AppCompatActivity() {
                     findViewById<com.google.android.material.textfield.TextInputEditText>(R.id.textInputEditText)
                 val timeOfDay = timeInput.text.toString().lowercase()
 
-                var sparkmessage = "Time to reach out"
+
+                var intent: Intent? = null
+                var spark = ""
 
                 when (selectedCategory) {
                     "Family" -> {
-
-                        val spark = if (timeOfDay.contains("mid-morning")) {
+                        intent = Intent(this@MainActivity, FamilyActivity::class.java)
+                        spark = if (timeOfDay.contains("mid-morning")) {
                             "Mid-morning Spark: Send a quick 'thinking of you' text to a sibling or cousin."
                         } else if (timeOfDay.contains("morning")) {
                             "Morning Spark: Send a 'Good morning' text to a family member."
@@ -85,16 +77,11 @@ class MainActivity : AppCompatActivity() {
                         } else {
                             "Family Spark: Reach out to a loved one just to say hi!"
                         }
-
-                        intent.putExtra("CORA_SPARK", spark)
-                        startActivity(intent)
                     }
 
                     "Work/School" -> {
-
-                        val intent = Intent(this@MainActivity, WorkAndSchoolActivity::class.java)
-
-                        val spark = if (timeOfDay.contains("mid-morning")) {
+                        intent = Intent(this@MainActivity, WorkAndSchoolActivity::class.java)
+                        spark = if (timeOfDay.contains("mid-morning")) {
                             "Mid-morning Spark: Reach out to a colleague or classmate with a quick 'Thank you' for their help."
                         } else if (timeOfDay.contains("morning")) {
                             "Morning Spark: Send a supportive 'Good luck' message to someone starting a big task today."
@@ -109,14 +96,11 @@ class MainActivity : AppCompatActivity() {
                         } else {
                             "Work/School Spark: Send a quick message..."
                         }
-
                     }
 
-                    "Friends" -> {
-
-                        val intent = Intent(this@MainActivity, MentalHealthActivity::class.java)
-
-                        val spark = if (timeOfDay.contains("mid-morning")) {
+                    "New friends/ friends" -> {
+                        intent = Intent(this@MainActivity, FriendsActivity::class.java)
+                        spark = if (timeOfDay.contains("mid-morning")) {
                             "Morning Spark: Send a 'Good morning' text to a friend you haven't spoken to this week."
                         } else if (timeOfDay.contains("morning")) {
                             "Mid-morning Spark: React to a friend's story or status with a supportive comment."
@@ -131,13 +115,11 @@ class MainActivity : AppCompatActivity() {
                         } else {
                             "Friends Spark: Reach out to a friend just to let them know you're thinking of them!"
                         }
-
                     }
 
                     "LGBTQ+" -> {
-                        val intent = Intent(this@MainActivity, LGBTQactivity::class.java)
-
-                        val spark = if (timeOfDay.contains("morning")) {
+                        intent = Intent(this@MainActivity, LGBTQactivity::class.java)
+                        spark = if (timeOfDay.contains("morning")) {
                             "Morning Spark: Start your day with a positive affirmation: 'I am proud of who I am.'"
                         } else if (timeOfDay.contains("mid-morning")) {
                             "Mid-morning Spark: Reach out to a supportive friend or ally for a quick chat."
@@ -152,12 +134,11 @@ class MainActivity : AppCompatActivity() {
                         } else {
                             "Community Spark: Celebrate your unique journey and the community that walks with you."
                         }
-
                     }
-                    "Religious/Spiritual" -> {
-                        val intent = Intent(this@MainActivity, SpiritualActivity::class.java)
 
-                        val spark = if (timeOfDay.contains("morning")) {
+                    "Religious/Spiritual" -> {
+                        intent = Intent(this@MainActivity, SpiritualActivity::class.java)
+                        spark = if (timeOfDay.contains("morning")) {
                             "Morning Spark: Spend 5 minutes in silent prayer or meditation to center your soul"
                         } else if (timeOfDay.contains("mid-morning")) {
                             "Mid-morning Spark: Read a short passage from a sacred text or an inspiring spiritual book."
@@ -172,30 +153,39 @@ class MainActivity : AppCompatActivity() {
                         } else {
                             "Spiritual Spark: Take a deep breath and reconnect with the quiet peace within you."
                         }
-
                     }
-                    "Mental Health" -> {
-                    val intent = Intent(this@MainActivity, MentalHealthActivity::class.java)
 
-                    val spark = if (timeOfDay.contains("morning")) {
-                        "Morning Spark: Take 5 deep breaths and set one positive intention for your day."
-                         } else if (timeOfDay.contains("mid-morning")) {
-                        "Mid-morning Spark: Stretch your arms and neck. Remind yourself that you are doing your best."
-                         } else if (timeOfDay.contains("snack")) {
-                        "Snack Time Spark: Drink a glass of water mindfully. Notice the sensation and stay present."
-                         } else if (timeOfDay.contains("afternoon")) {
-                        "Afternoon Spark: Write down one thing you have accomplished today, no matter how small."
-                         } else if (timeOfDay.contains("dinner")) {
-                        "Dinner Spark: Put your phone away while you eat and focus on the flavors of your food."
-                         } else if (timeOfDay.contains("night") || timeOfDay.contains("after dinner")) {
-                        "Night Spark: List three things you are grateful for before you close your eyes to sleep."
-                         } else {
-                             "Mental Health Spark: Take a moment to simply be. You are enough exactly as you are."
-                         }
+                    "Mental Health" -> {
+                        intent = Intent(this@MainActivity, MentalHealthActivity::class.java)
+                        spark = if (timeOfDay.contains("morning")) {
+                            "Morning Spark: Take 5 deep breaths and set one positive intention for your day."
+                        } else if (timeOfDay.contains("mid-morning")) {
+                            "Mid-morning Spark: Stretch your arms and neck. Remind yourself that you are doing your best."
+                        } else if (timeOfDay.contains("snack")) {
+                            "Snack Time Spark: Drink a glass of water mindfully. Notice the sensation and stay present."
+                        } else if (timeOfDay.contains("afternoon")) {
+                            "Afternoon Spark: Write down one thing you have accomplished today, no matter how small."
+                        } else if (timeOfDay.contains("dinner")) {
+                            "Dinner Spark: Put your phone away while you eat and focus on the flavors of your food."
+                        } else if (timeOfDay.contains("night") || timeOfDay.contains("after dinner")) {
+                            "Night Spark: List three things you are grateful for before you close your eyes to sleep."
+                        } else {
+                            "Mental Health Spark: Take a moment to simply be. You are enough exactly as you are."
+                        }
+                    }
+                }
+
+                // --- THE CRITICAL FIX: Send the data and start the page ---
+                if (intent != null) {
+                    intent.putExtra("CORA_SPARK", spark)
+                    startActivity(intent)
                 }
             }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
     }
+}
 
 
 
