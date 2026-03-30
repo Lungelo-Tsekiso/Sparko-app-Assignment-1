@@ -12,21 +12,25 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //Initializing UI by linking them to the XML ID's
         val exitBtn: Button = findViewById(R.id.exitButton)
         val resetButton: Button = findViewById(R.id.resetButton)
         val mySpinner: Spinner = findViewById(R.id.communitySpinner)
         val timeInput: EditText = findViewById(R.id.timeOfDayInput)
 
+        //Closes the application and all associated activities
         exitBtn.setOnClickListener {
             finishAffinity()
         }
 
+        //RESET LOGIC: Clears the user input and resets the spinner to the default state
         resetButton.setOnClickListener {
             timeInput.text.clear()
             mySpinner.setSelection(0)
             Toast.makeText(this, "Fresh start! What's the vibe now? ", Toast.LENGTH_SHORT).show()
         }
 
+        //SPINNER SETUP: Defining the social categories for the user to choose from
         val options = arrayOf(
             "Select a Community...",
             "Family",
@@ -40,13 +44,16 @@ class MainActivity : AppCompatActivity() {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         mySpinner.adapter = adapter
 
+        //SELECTION LISTENER: This handles the core logic when a user selects a category
         mySpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
 
                 val selectedCategory = options[position]
 
+                //Guard Clause: Prevents the app from firing if the placeholder is selected
                 if (selectedCategory == "Select a Community...") return
 
+                // ERROR HANDLING: Checks if the user entered a time before proceeding
                 val timeOfDay = timeInput.text.toString().trim().lowercase()
 
                 if (timeOfDay.isEmpty()) {
@@ -55,11 +62,12 @@ class MainActivity : AppCompatActivity() {
                     return
                 }
 
+                // VALIDATION: Ensures the input matches one of our recognized time frames
                 val validKeywords = listOf("morning", "afternoon", "night", "dinner", "snack", "mid-morning")
                 val isValid = validKeywords.any { timeOfDay.contains(it) }
 
                 if (!isValid) {
-                    timeInput.error = "Almost there! Try 'Morning', 'Afternoon', or 'Night' to align your energy. 🧘🏽‍♀️"
+                    timeInput.error = "Almost there! Try 'Morning', 'Mid-Morning', 'Snack' , 'Afternoon', 'Dinner' or 'Night' to align your energy. ️"
                     mySpinner.setSelection(0)
                     return
                 }
@@ -67,6 +75,7 @@ class MainActivity : AppCompatActivity() {
                 var intent: Intent? = null
                 var spark = ""
 
+                // CONDITIONAL LOGIC ENGINE: Matches the Time + Category to create a "Spark"
                 when (selectedCategory) {
                     "Family" -> {
                         intent = Intent(this@MainActivity, FamilyActivity::class.java)
@@ -84,9 +93,10 @@ class MainActivity : AppCompatActivity() {
                             "Night Spark: Leave a thoughtful comment on a family member's latest post."
                         } else {
                             "Family Spark: Reach out to a loved one just to say hi!"
-                        }
+                        } //...(rest of the nested logic continues)
                     }
 
+                    //...(other catergories follow with the same pattern)
                     "Work/School" -> {
                         intent = Intent(this@MainActivity, WorkAndSchoolActivity::class.java)
                         spark = if (timeOfDay.contains("mid-morning")) {
@@ -183,6 +193,7 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
 
+                // INTENT DISPACTHER: passes the generated Spark String to the next activity
                 if (intent != null) {
                     intent.putExtra("CORA_SPARK", spark)
                     startActivity(intent)
