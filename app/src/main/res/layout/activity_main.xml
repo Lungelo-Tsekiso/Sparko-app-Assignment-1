@@ -90,10 +90,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:backgroundTint="#4A148C"
-                android:hint="Morning / Afternoon / Night..."
+                android:hint="Morning/ Mid-morning / Snack/Afternoon / Dinner/Night..."
                 android:minHeight="48dp"
+                android:textAlignment="center"
                 android:textColor="#4A148C"
-                android:textColorHint="#994A148C" />
+                android:textColorHint="#994A148C"
+                android:textSize="12sp" />
 
             <View
                 android:layout_width="match_parent"
