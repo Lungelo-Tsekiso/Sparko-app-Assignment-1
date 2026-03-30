@@ -69,6 +69,7 @@
         android:layout_marginHorizontal="10dp">
 
         <LinearLayout
+            android:id="@+id/L.Layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -129,9 +130,12 @@
         android:textStyle="bold"
         app:cornerRadius="30dp"
         app:layout_constraintBottom_toTopOf="@id/exitButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputsCard"
+        app:layout_constraintVertical_bias="1.0"
         app:strokeColor="#4A148C"
-        app:strokeWidth="2dp"
-        tools:layout_editor_absoluteX="24dp" />
+        app:strokeWidth="2dp" />
 
     <Button
         android:id="@+id/exitButton"

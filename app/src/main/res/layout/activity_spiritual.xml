@@ -55,7 +55,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="@drawable/spiritual_gradient"
+            android:background="@drawable/spiritual_background_gradient_xml"
             android:padding="50dp"
             android:gravity="center">
 

@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         resetButton.setOnClickListener {
             timeInput.text.clear()
             mySpinner.setSelection(0)
-            Toast.makeText(this, "Fresh start! What's the vibe now? ✨", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Fresh start! What's the vibe now? ", Toast.LENGTH_SHORT).show()
         }
 
         val options = arrayOf(
@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
                 val timeOfDay = timeInput.text.toString().trim().lowercase()
 
                 if (timeOfDay.isEmpty()) {
-                    timeInput.error = "Your spark needs a time of day to glow! ✨"
+                    timeInput.error = "Your spark needs a time of day to glow! "
                     mySpinner.setSelection(0)
                     return
                 }
@@ -182,7 +182,7 @@ class MainActivity : AppCompatActivity() {
                         }
                     }
                 }
-                
+
                 if (intent != null) {
                     intent.putExtra("CORA_SPARK", spark)
                     startActivity(intent)
