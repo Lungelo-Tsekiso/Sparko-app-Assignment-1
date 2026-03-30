@@ -5,72 +5,98 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F3E5F5"
+    android:background="#FFFFFF"
     android:padding="24dp"
     tools:context=".SpiritualActivity">
 
     <TextView
-        android:id="@+id/appLogoText"
+        android:id="@+id/spiritualTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SPARKO"
-        android:textSize="32sp"
+        android:text="Soul Connection"
+        android:textColor="#2D6A4F"
+        android:textSize="34sp"
         android:textStyle="bold"
-        android:textColor="#4A148C"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintVertical_bias="0.009" />
 
     <TextView
-        android:id="@+id/pageSubtitle"
+        android:id="@+id/spiritualSubtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Spiritual Sparks"
+        android:text="Sparks to refreshen your soul"
+        android:textColor="#409167"
         android:textSize="16sp"
-        android:textColor="#7B1FA2"
-        app:layout_constraintTop_toBottomOf="@id/appLogoText"
-        app:layout_constraintStart_toStartOf="@id/appLogoText" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@id/spiritualTitle"
+        app:layout_constraintTop_toBottomOf="@id/spiritualTitle"
+        app:layout_constraintVertical_bias="0.0" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/spiritualCard"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        app:cardBackgroundColor="#E1BEE7"
-        app:cardCornerRadius="20dp"
-        app:cardElevation="10dp"
-        app:layout_constraintTop_toBottomOf="@id/pageSubtitle"
+        android:layout_marginTop="70dp"
+        app:cardCornerRadius="32dp"
+        app:cardElevation="25dp"
+        app:cardPreventCornerOverlap="false"
+        app:layout_constraintTop_toBottomOf="@id/spiritualSubtitle"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginHorizontal="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="32dp"
+            android:background="@drawable/spiritual_gradient"
+            android:padding="50dp"
             android:gravity="center">
+
+            <ImageView
+                android:id="@+id/starIcon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@android:drawable/btn_star_big_on"
+                android:layout_marginBottom="16dp"
+                android:translationZ="10dp"
+                app:tint="#2D6A4F" />
 
             <TextView
                 android:id="@+id/sparkDisplayTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Your spiritual spark..."
-                android:textSize="20sp"
-                android:textColor="#4A148C"
-                android:textStyle="italic"
-                android:gravity="center" />
+                android:text="Aligning your spiritual spark..."
+                android:textSize="22sp"
+                android:textStyle="italic|bold"
+                android:textColor="#1B4332"
+                android:gravity="center"
+                android:lineSpacingExtra="4dp" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
     <Button
         android:id="@+id/backButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Back to Menu"
-        android:backgroundTint="#7B1FA2"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginBottom="30dp"
+        android:backgroundTint="#2D6A4F"
+        android:text="RETURN TO PEACE"
         android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        app:cornerRadius="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="40dp" />
+        app:layout_constraintHorizontal_bias="0.362"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spiritualCard"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

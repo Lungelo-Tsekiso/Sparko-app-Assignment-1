@@ -5,71 +5,88 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ECEFF1"
+    android:background="#FFFFFF"
     android:padding="24dp"
     tools:context=".WorkAndSchoolActivity">
 
     <TextView
-        android:id="@+id/appLogoText"
+        android:id="@+id/workTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SPARKO"
-        android:textSize="32sp"
+        android:text="Grind &amp; Glow"
+        android:textSize="34sp"
         android:textStyle="bold"
-        android:textColor="#263238"
+        android:textColor="#1A1A1A"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="20dp" />
 
     <TextView
-        android:id="@+id/pageSubtitle"
+        android:id="@+id/workSubtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Work &amp; School Sparks"
+        android:text="Sparks To Boost Your Productivity"
+        android:textColor="#8B0000"
         android:textSize="16sp"
-        android:textColor="#455A64"
-        app:layout_constraintTop_toBottomOf="@id/appLogoText"
-        app:layout_constraintStart_toStartOf="@id/appLogoText" />
+        app:layout_constraintStart_toStartOf="@id/workTitle"
+        app:layout_constraintTop_toBottomOf="@id/workTitle" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/workCard"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        app:cardBackgroundColor="#CFD8DC"
-        app:cardCornerRadius="20dp"
-        app:cardElevation="10dp"
-        app:layout_constraintTop_toBottomOf="@id/pageSubtitle"
+        android:layout_marginTop="70dp"
+        app:cardCornerRadius="32dp"
+        app:cardElevation="25dp"
+        app:cardPreventCornerOverlap="false"
+        app:layout_constraintTop_toBottomOf="@id/workSubtitle"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginHorizontal="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="32dp"
+            android:background="@drawable/work_gradient"
+            android:padding="50dp"
             android:gravity="center">
+
+            <ImageView
+                android:id="@+id/starIcon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@android:drawable/btn_star_big_on"
+                android:layout_marginBottom="16dp"
+                android:translationZ="12dp"
+                app:tint="#FF0000" />
 
             <TextView
                 android:id="@+id/sparkDisplayTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Your professional spark..."
-                android:textSize="20sp"
-                android:textColor="#263238"
-                android:gravity="center" />
+                android:text="Focus on the goal..."
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="#FF0000"
+                android:gravity="center"
+                android:lineSpacingExtra="4dp" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
     <Button
         android:id="@+id/backButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Back to Menu"
-        android:backgroundTint="#455A64"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:text="BACK TO WORK"
+        android:backgroundTint="#1A1A1A"
         android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        app:cornerRadius="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="40dp" />
+        android:layout_marginBottom="30dp"
+        android:layout_marginHorizontal="40dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

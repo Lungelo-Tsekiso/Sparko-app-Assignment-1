@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
             finishAffinity()
         }
 
-        val mySpinner: Spinner = findViewById(R.id.spinner)
+        val mySpinner = findViewById<Spinner>(R.id.communitySpinner)
         val options = arrayOf(
             "Family",
             "New friends/ friends",
@@ -51,8 +51,7 @@ class MainActivity : AppCompatActivity() {
                 id: Long
             ) {
                 val selectedCategory = options[position]
-                val timeInput =
-                    findViewById<com.google.android.material.textfield.TextInputEditText>(R.id.textInputEditText)
+                val timeInput = findViewById<EditText>(R.id.timeOfDayInput)
                 val timeOfDay = timeInput.text.toString().lowercase()
 
 
