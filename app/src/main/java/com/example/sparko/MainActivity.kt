@@ -3,19 +3,8 @@ package com.example.sparko
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import android.view.ViewParent
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Spinner
-import android.widget.SpinnerAdapter
-import android.widget.TextView
-import androidx.activity.enableEdgeToEdge
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.insets.Protection
-import com.google.android.material.textfield.TextInputEditText
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,14 +12,23 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
         val exitBtn: Button = findViewById(R.id.exitButton)
+        val resetButton: Button = findViewById(R.id.resetButton)
+        val mySpinner: Spinner = findViewById(R.id.communitySpinner)
+        val timeInput: EditText = findViewById(R.id.timeOfDayInput)
+
         exitBtn.setOnClickListener {
             finishAffinity()
         }
 
-        val mySpinner = findViewById<Spinner>(R.id.communitySpinner)
+        resetButton.setOnClickListener {
+            timeInput.text.clear()
+            mySpinner.setSelection(0)
+            Toast.makeText(this, "Fresh start! What's the vibe now? ✨", Toast.LENGTH_SHORT).show()
+        }
+
         val options = arrayOf(
+            "Select a Community...",
             "Family",
             "New friends/ friends",
             "Work/School",
@@ -42,18 +40,29 @@ class MainActivity : AppCompatActivity() {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         mySpinner.adapter = adapter
 
-
         mySpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                val selectedCategory = options[position]
-                val timeInput = findViewById<EditText>(R.id.timeOfDayInput)
-                val timeOfDay = timeInput.text.toString().lowercase()
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
 
+                val selectedCategory = options[position]
+
+                if (selectedCategory == "Select a Community...") return
+
+                val timeOfDay = timeInput.text.toString().trim().lowercase()
+
+                if (timeOfDay.isEmpty()) {
+                    timeInput.error = "Your spark needs a time of day to glow! ✨"
+                    mySpinner.setSelection(0)
+                    return
+                }
+
+                val validKeywords = listOf("morning", "afternoon", "night", "dinner", "snack", "mid-morning")
+                val isValid = validKeywords.any { timeOfDay.contains(it) }
+
+                if (!isValid) {
+                    timeInput.error = "Almost there! Try 'Morning', 'Afternoon', or 'Night' to align your energy. 🧘🏽‍♀️"
+                    mySpinner.setSelection(0)
+                    return
+                }
 
                 var intent: Intent? = null
                 var spark = ""
@@ -173,8 +182,7 @@ class MainActivity : AppCompatActivity() {
                         }
                     }
                 }
-
-                // --- THE CRITICAL FIX: Send the data and start the page ---
+                
                 if (intent != null) {
                     intent.putExtra("CORA_SPARK", spark)
                     startActivity(intent)

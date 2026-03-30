@@ -118,6 +118,22 @@
     </androidx.cardview.widget.CardView>
 
     <Button
+        android:id="@+id/resetButton"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginBottom="12dp"
+        android:backgroundTint="#00000000"
+        android:text="RESET BUTTON"
+        android:textColor="#4A148C"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:cornerRadius="30dp"
+        app:layout_constraintBottom_toTopOf="@id/exitButton"
+        app:strokeColor="#4A148C"
+        app:strokeWidth="2dp"
+        tools:layout_editor_absoluteX="24dp" />
+
+    <Button
         android:id="@+id/exitButton"
         android:layout_width="match_parent"
         android:layout_height="60dp"
